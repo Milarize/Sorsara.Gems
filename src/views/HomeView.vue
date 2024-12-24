@@ -2,6 +2,7 @@
 import HeaderView from '../components/Header.vue'
 import ListJewelry from '../components/ListJewelry.vue'
 import Subscribe from '../components/Subscribe.vue'
+import Aboutme from '../components/Aboutme.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const cursorX = ref(0)
@@ -13,7 +14,7 @@ const targetY = ref(0)
 const showHeader = ref(false)
 const showList = ref(false) 
 const showSubscribe = ref(false)
-
+const showAbout = ref(false)
 const updateCursorPosition = (e: MouseEvent) => {
   targetX.value = e.clientX
   targetY.value = e.clientY
@@ -48,6 +49,10 @@ onMounted(() => {
   setTimeout(() => {
     showSubscribe.value = true
   }, 2000)
+
+  setTimeout(() => {
+    showAbout.value = true
+  }, 3000)
 })
 
 onUnmounted(() => {
@@ -64,9 +69,13 @@ onUnmounted(() => {
     <Transition name="fade">
       <ListJewelry v-if="showList" />
     </Transition>
+    <Transition name="fade">
+      <Aboutme v-if="showAbout" />
+    </Transition>
     <Transition name="fade">  
       <Subscribe v-if="showSubscribe" />
     </Transition>
+
     <div 
       class="cursor-follower"
       v-show="isVisible"
