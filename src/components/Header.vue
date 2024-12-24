@@ -17,7 +17,7 @@ onMounted(() => {
       <img src="/logo.jpg" alt="Sorsara.Gems Logo" class="logo" :class="{ 'show-animation': showAnimation }" style="border-radius: 50%; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
       <div class="header-animation">
         <h1 class="animate-text" :class="{ 'show-animation': showAnimation }">
-          ✨ Sorsara.Gems ✨
+           Sorsara.Gems 
         </h1>
         <p class="subtitle" :class="{ 'show-animation': showAnimation }">
           เครื่องประดับอัญมณีจันทบุรี
@@ -32,6 +32,10 @@ onMounted(() => {
    
   </header>
 
+  <main>
+    <img src="/defult.jpg" alt="Default Image" class="main-image">
+  </main>
+
   <RouterView />
 </template>
 
@@ -45,6 +49,13 @@ header {
   background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
   padding: 2rem 0;
   font-family: 'Prompt', sans-serif;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 2rem;
 }
 
 .header-content {
@@ -120,7 +131,7 @@ nav a:first-of-type {
   font-weight: 600;
   font-size: 3.2rem;
   opacity: 0;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b1e8);
+  background: linear-gradient(45deg, #020202, #020202);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

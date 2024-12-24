@@ -18,12 +18,14 @@ const items = ref(jewelryList)
     <div class="scroll-container">
       <div class="scroll-content">
         <div v-for="(item, index) in items" :key="index" class="jewelry-item">
-          <img :src="item.image" :alt="item.name" class="jewelry-image">
-      
+          <div class="image-container">
+            <img :src="item.image" :alt="item.name" class="jewelry-image">
+          </div>
         </div>
         <div v-for="(item, index) in items" :key="'duplicate-'+index" class="jewelry-item">
-          <img :src="item.image" :alt="item.name" class="jewelry-image">
-        
+          <div class="image-container">
+            <img :src="item.image" :alt="item.name" class="jewelry-image">
+          </div>
         </div>
       </div>
     </div>
@@ -34,7 +36,7 @@ const items = ref(jewelryList)
 .jewelry-container {
   width: 100%;
   overflow: hidden;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .scroll-container {
@@ -46,34 +48,41 @@ const items = ref(jewelryList)
   display: flex;
   animation: scroll 20s linear infinite;
   white-space: nowrap;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .jewelry-item {
-  padding: 0 1rem;
+  padding: 0 0.2rem;
   font-family: 'Prompt', sans-serif;
-  transition: transform 0.3s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.image-container {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+ 
+}
+
 .jewelry-image {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease;
+}
+
+.jewelry-item:hover .jewelry-image {
+  transform: scale(1.2);
 }
 
 .item-name {
   margin-top: 0.5rem;
   font-size: 1.2rem;
-}
-
-.jewelry-item:hover {
-  transform: scale(1.2);
 }
 
 @keyframes scroll {

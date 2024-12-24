@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import HeaderView from '../components/Header.vue'
 import ListJewelry from '../components/ListJewelry.vue'
+import Subscribe from '../components/Subscribe.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const cursorX = ref(0)
@@ -8,6 +9,10 @@ const cursorY = ref(0)
 const isVisible = ref(false)
 const targetX = ref(0)
 const targetY = ref(0)
+
+const showHeader = ref(false)
+const showList = ref(false) 
+const showSubscribe = ref(false)
 
 const updateCursorPosition = (e: MouseEvent) => {
   targetX.value = e.clientX
@@ -30,6 +35,19 @@ onMounted(() => {
   window.addEventListener('mousemove', updateCursorPosition)
   window.addEventListener('mouseout', hideCursor)
   smoothCursor()
+
+  // แสดงคอมโพเนนต์ทีละอัน
+  setTimeout(() => {
+    showHeader.value = true
+  }, 0)
+
+  setTimeout(() => {
+    showList.value = true
+  }, 1000)
+
+  setTimeout(() => {
+    showSubscribe.value = true
+  }, 2000)
 })
 
 onUnmounted(() => {
@@ -40,9 +58,15 @@ onUnmounted(() => {
 
 <template>
   <div style="background-color: white; min-height: 100vh; width: 100vw;">
-    <HeaderView />
-    <ListJewelry />
-    
+    <Transition name="fade">
+      <HeaderView v-if="showHeader" />
+    </Transition>
+    <Transition name="fade">
+      <ListJewelry v-if="showList" />
+    </Transition>
+    <Transition name="fade">  
+      <Subscribe v-if="showSubscribe" />
+    </Transition>
     <div 
       class="cursor-follower"
       v-show="isVisible"
@@ -66,6 +90,16 @@ onUnmounted(() => {
   z-index: 9999;
   mix-blend-mode: difference;
   animation: pulse 2s infinite;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @keyframes pulse {
