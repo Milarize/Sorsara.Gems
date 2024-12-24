@@ -1,10 +1,84 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+<script lang="ts" setup>
+import HeaderView from '../components/Header.vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const cursorX = ref(0)
+const cursorY = ref(0)
+const isVisible = ref(false)
+const targetX = ref(0)
+const targetY = ref(0)
+
+const updateCursorPosition = (e: MouseEvent) => {
+  targetX.value = e.clientX
+  targetY.value = e.clientY
+  isVisible.value = true
+}
+
+const hideCursor = () => {
+  isVisible.value = false
+}
+
+const smoothCursor = () => {
+  const easing = 0.15
+  cursorX.value += (targetX.value - cursorX.value) * easing
+  cursorY.value += (targetY.value - cursorY.value) * easing
+  requestAnimationFrame(smoothCursor)
+}
+
+onMounted(() => {
+  window.addEventListener('mousemove', updateCursorPosition)
+  window.addEventListener('mouseout', hideCursor)
+  smoothCursor()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousemove', updateCursorPosition)
+  window.removeEventListener('mouseout', hideCursor)
+})
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-    <Footers/>
-  </main>
+  <div style="background-color: white; min-height: 100vh; width: 100vw;">
+    <HeaderView />
+    <h1>Home</h1>
+    
+    <div 
+      class="cursor-follower"
+      v-show="isVisible"
+      :style="{
+        left: cursorX + 'px',
+        top: cursorY + 'px'
+      }"
+    ></div>
+  </div>
 </template>
+
+<style scoped>
+.cursor-follower {
+  pointer-events: none;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 192, 203, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: difference;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+}
+</style>
