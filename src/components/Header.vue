@@ -24,12 +24,12 @@ onMounted(() => {
         </p>
       </div>
     </div>
-    <nav :class="{ 'show-animation': showAnimation }">
-      <RouterLink to="/">หน้าแรก</RouterLink>
-      <RouterLink to="/">เกี่ยวกับเรา</RouterLink>
-      <RouterLink to="/">สินค้า</RouterLink>
-      <RouterLink to="/">ติดต่อเรา</RouterLink>
-    </nav>
+   
+      <!-- <p class="subtitle" :class="{ 'show-animation': showAnimation }">
+          เกี่ยวกับเรา
+        </p> -->
+        
+   
   </header>
 
   <RouterView />
@@ -37,6 +37,7 @@ onMounted(() => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Prompt:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
 
 header {
   line-height: 1.5;
@@ -115,7 +116,7 @@ nav a:first-of-type {
 }
 
 .animate-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
   font-weight: 600;
   font-size: 3.2rem;
   opacity: 0;
@@ -194,5 +195,11 @@ nav a:first-of-type {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.brand-name {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 </style>

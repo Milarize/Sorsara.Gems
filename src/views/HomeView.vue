@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import HeaderView from '../components/Header.vue'
+import ListJewelry from '../components/ListJewelry.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const cursorX = ref(0)
@@ -40,7 +41,7 @@ onUnmounted(() => {
 <template>
   <div style="background-color: white; min-height: 100vh; width: 100vw;">
     <HeaderView />
-    <h1>Home</h1>
+    <ListJewelry />
     
     <div 
       class="cursor-follower"
