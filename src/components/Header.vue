@@ -7,34 +7,31 @@ const showAnimation = ref(false)
 onMounted(() => {
   setTimeout(() => {
     showAnimation.value = true
-  }, 1500) 
+  }, 1500)
 })
 </script>
 
 <template>
   <header>
     <div class="header-content">
-      <img src="/logo.jpg" alt="Sorsara.Gems Logo" class="logo" :class="{ 'show-animation': showAnimation }" style="border-radius: 50%; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <img src="/logo.jpg" alt="Sorsara.Gems Logo" class="logo" :class="{ 'show-animation': showAnimation }"
+        style="border-radius: 50%; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
       <div class="header-animation">
         <h1 class="animate-text" :class="{ 'show-animation': showAnimation }">
-           Sorsara.Gems 
+          Sorsara.Gems
         </h1>
         <p class="subtitle" :class="{ 'show-animation': showAnimation }">
           เครื่องประดับอัญมณีจันทบุรี
         </p>
       </div>
     </div>
-   
-      <!-- <p class="subtitle" :class="{ 'show-animation': showAnimation }">
-          เกี่ยวกับเรา
-        </p> -->
-        
-   
+
+    <!-- <p class="subtitle" :class="{ 'show-animation': showAnimation }">
+เกี่ยวกับเรา
+</p> -->
+
   </header>
 
-  <main>
-    <img src="/defult.jpg" alt="Default Image" class="main-image">
-  </main>
 
   <RouterView />
 </template>
@@ -43,11 +40,17 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Prompt:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 header {
-  line-height: 1.5;
-  max-height: 100vh;
-  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-  padding: 2rem 0;
+  line-height: 1.2;
+  max-height: 80vh;
+  background: #f5f5f5;
+  padding: 1rem 0;
   font-family: 'Prompt', sans-serif;
 }
 
@@ -55,46 +58,47 @@ header {
   width: 100%;
   height: auto;
   object-fit: cover;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 0 2rem;
+  gap: 1rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
 }
 
 .logo {
-  width: 180px;
+  width: clamp(80px, 15vw, 120px);
   height: auto;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;
-  transform: translateX(-30px) scale(0.95);
+  transform: translateX(-20px) scale(0.95);
 }
 
 .logo.show-animation {
-  animation: fadeInLeft 1.5s ease-in-out forwards;
+  animation: fadeInLeft 1.2s ease-in-out forwards;
 }
 
 .logo:hover {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.05) rotate(3deg);
 }
 
 nav {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-family: 'Prompt', sans-serif;
   font-weight: 300;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 nav.show-animation {
-  animation: fadeInUp 1.5s ease-in-out 0.8s forwards;
+  animation: fadeInUp 1.2s ease-in-out 0.6s forwards;
 }
 
 nav a.router-link-exact-active {
@@ -108,14 +112,14 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   display: inline-block;
-  padding: 0.5rem 1.5rem;
-  border-left: 2px solid var(--color-border);
+  padding: 0.3rem 1rem;
+  border-left: 1px solid var(--color-border);
   transition: all 0.3s ease;
   color: #666;
 }
 
 nav a:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 nav a:first-of-type {
@@ -128,46 +132,47 @@ nav a:first-of-type {
 
 .animate-text {
   font-family: 'Cinzel', serif;
-  font-weight: 600;
-  font-size: 3.2rem;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   opacity: 0;
-  background: linear-gradient(45deg, #020202, #020202);
+  background: linear-gradient(45deg, #dc9090, #020202, #dc9090);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.5s ease;
-  animation: gradient 3s ease infinite;
-  letter-spacing: 0.5px;
+  animation: textGradient 3s ease infinite;
+  letter-spacing: 0.3px;
 }
 
 .subtitle {
   font-family: 'Prompt', sans-serif;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
   color: #666;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 .subtitle.show-animation {
-  animation: fadeInUp 1.5s ease-in-out 0.5s forwards;
+  animation: fadeInUp 1.2s ease-in-out 0.4s forwards;
 }
 
 .animate-text:hover {
-  transform: scale(1.05);
-  letter-spacing: 1px;
+  transform: scale(1.03);
+  letter-spacing: 0.5px;
 }
 
 .animate-text.show-animation {
-  animation: fadeInDown 1.5s ease-in-out forwards;
+  animation: fadeInDown 1.2s ease-in-out forwards, textGradient 3s ease infinite;
 }
 
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-30px) scale(0.95);
+    transform: translateY(-20px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -177,8 +182,9 @@ nav a:first-of-type {
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px) scale(0.95);
+    transform: translateX(-20px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -188,15 +194,16 @@ nav a:first-of-type {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes gradient {
+@keyframes textGradient {
   0% {
     background-position: 0% 50%;
   }
@@ -210,7 +217,38 @@ nav a:first-of-type {
 
 .brand-name {
   font-family: 'Cinzel', serif;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .header-animation {
+    text-align: center;
+  }
+
+  nav a {
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.8rem 0;
+  }
+
+  .header-content {
+    padding: 0 0.8rem;
+  }
+
+  nav a {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+  }
 }
 </style>

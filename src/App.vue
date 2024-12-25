@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import {  RouterView } from 'vue-router'
+
 import '@mdi/font/css/materialdesignicons.css'
 
 </script>
 
 <template>
-  <v-app>
-    <RouterView />
-  </v-app>
+  <router-view></router-view>
 </template>
+<style>
+
+body {
+
+  background-color: #ffffff;
+}
+
+
+</style>
